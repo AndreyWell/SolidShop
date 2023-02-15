@@ -11,7 +11,7 @@ public class Purchase implements Operations {
 
     protected String title;
     protected int count;
-    protected Purchase[] purchases = new Purchase[Products.getProducts().size()];
+    protected Purchase[] purchases;
 
     public Purchase(String title, int count) {
         this.title = title;
@@ -19,6 +19,7 @@ public class Purchase implements Operations {
     }
 
     public Purchase() {
+        purchases = new Purchase[Shop.getProducts().size()];
     }
 
     public void addPurchase(String title, int count) {

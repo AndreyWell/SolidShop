@@ -5,15 +5,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Products prod = new Products();
-        Products.put("Хлеб", 56);
-        Products.put("Масло", 153);
-        Products.put("Колбаса", 211);
-        Products.put("Пирожок", 45);
-        Products.put("Сырок", 15);
+        Shop shop = new Shop();
+
+        Shop.put(new Product("Хлеб", 56));
+        Shop.put(new Product("Масло", 153));
+        Shop.put(new Product("Колбаса", 211));
+        Shop.put(new Product("Пирожок", 45));
+        Shop.put(new Product("Сырок", 15));
 
         System.out.println("В МАГАЗИНЕ В НАЛИЧИИ");
-        for (Map.Entry<String, Integer> productAndPrice : Products.getProducts().entrySet()) {
+        for (Map.Entry<String, Integer> productAndPrice : Shop.getProducts().entrySet()) {
             System.out.println(productAndPrice.getKey() + " за " + productAndPrice.getValue() + " руб./шт.");
         }
 
@@ -28,7 +29,7 @@ public class Main {
             int count = Integer.parseInt(parts[1]);
             purchase.addPurchase(product, count);
         }
-        long sum = purchase.sum(Products.getProducts());
+        long sum = purchase.sum(Shop.getProducts());
         System.out.println("ИТОГО: " + sum);
     }
 }
