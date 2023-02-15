@@ -7,7 +7,7 @@ import java.util.Map;
  * на данные фактического размера HashMap с продуктами магазина.
  */
 
-public class Purchase implements Operations {
+public class Purchase implements Operation {
 
     protected String title;
     protected int count;

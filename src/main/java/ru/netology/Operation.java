@@ -7,7 +7,7 @@ import java.util.Map;
  * addPurchase() и sum() через интерфейс
  */
 
-public interface Operations {
+public interface Operation {
     void addPurchase(String title, int count);
     long sum(Map<String, Integer> prices);
 }
