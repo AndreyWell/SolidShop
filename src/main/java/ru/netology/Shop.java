@@ -16,7 +16,7 @@ public class Shop {
     }
 
     public static void put(Product product) {
-        products.put(product.getName(), product.getPrice());
+        products.put(product.getTitle(), product.getPrice());
     }
 
     public static Map<String, Integer> getProducts() {
