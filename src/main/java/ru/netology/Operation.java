@@ -1,5 +1,6 @@
 package ru.netology;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -8,6 +9,6 @@ import java.util.Map;
  */
 
 public interface Operation {
-    void addPurchase(String title, int count);
-    long sum(Map<String, Integer> prices);
+    void addPurchase(Product product);
+    long sum(List<Product> prices);
 }

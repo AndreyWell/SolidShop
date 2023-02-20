@@ -1,7 +1,7 @@
 package ru.netology;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Принцип единой ответственности - вынес формирование набора продуктов
@@ -9,17 +9,17 @@ import java.util.Map;
  */
 
 public class Shop {
-    private static Map<String, Integer> products;
+    private List<Product> products;
 
     public Shop() {
-        products = new HashMap<>();
+        products = new ArrayList<>();
     }
 
-    public static void put(Product product) {
-        products.put(product.getTitle(), product.getPrice());
+    public void put(Product product) {
+        products.add(product);
     }
 
-    public static Map<String, Integer> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 }

@@ -1,6 +1,7 @@
 package ru.netology;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Магические числа - исправил размер массива Purchase[] с прямого значения
@@ -11,7 +12,7 @@ public class Purchase implements Operation {
 
     protected String title;
     protected int count;
-    protected Product[] products;
+    protected List<Product> products;
 
     public Purchase(String title, int count) {
         this.title = title;
@@ -19,33 +20,47 @@ public class Purchase implements Operation {
     }
 
     public Purchase() {
-        products = new Product[Shop.getProducts().size()];
+        products = new ArrayList<>();
     }
 
     @Override
-    public void addPurchase(String title, int count) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = new Product(title, Shop.getProducts().get(title), count);
-                return;
-            }
-            if (products[i].getTitle().equals(title)) {
-                products[i].setCount(products[i].getCount() + count);
+    public void addPurchase(Product product) {
+        if (products.size() == 0) {
+            products.add(product);
+            return;
+        }
+
+        int selector = 0;
+
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getTitle().equals(product.getTitle())) {
+                products.get(i).setCount(products.get(i).getCount() + product.getCount());
+                selector++;
                 return;
             }
         }
+
+        if (selector == 0) {
+            products.add(product);
+        }
+
     }
 
     @Override
-    public long sum(Map<String, Integer> prices) {
+    public long sum(List<Product> prices) {
         long sum = 0;
         System.out.println("КОРЗИНА:");
-        for (int i = 0; i < products.length; i++) {
-            Product product = products[i];
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
             if (product == null) continue;
-            System.out.println("\t" + product.getTitle() + " " + product.getCount() + " шт. в сумме " +
-                    (product.getCount() * prices.get(product.getTitle())) + " руб.");
-            sum += product.getCount() * prices.get(product.getTitle());
+            for (Product price : prices) {
+                if (price.getTitle().equals(product.getTitle())) {
+                    System.out.println("\t" + product.getTitle() + " " + product.getCount() + " шт. в сумме " +
+                            (product.getCount() * price.getPrice()) + " руб.");
+                    sum += product.getCount() * price.getPrice();
+                    break;
+                }
+            }
         }
         return sum;
     }
